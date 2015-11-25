@@ -1,0 +1,62 @@
+---
+layout: articleList
+title: 文章标签
+---
+{% include nav.html %}
+
+<div class="common-wrap auto">
+	<ul class="tag-wrap-ul oh underline">
+	{% for tag in site.tags %}
+	<li class="tag-wrap-li">
+	    <a href="javascript:void(window.location.href=encodeURI('tags.html?tag={{ tag[0] }}'))"> {{ tag[0] }}</a>
+	</li>
+	{% endfor %}
+	</ul>
+	<h1 id="J_tag"></h1>
+	<div id="J_cont"></div>
+</div>
+
+<script type="text/javascript">
+var dataStr2 = '{'+
+	{% for tag in site.tags %}
+		{% if tag[0] != site.tags.first[0] %}','+{% endif %}
+		'"{{ tag[0] }}":'+
+		'['+
+		{% for post in tag[1] %}
+		{% if post != tag[1].first %}','+{% endif %}
+		'{'+
+			'"url":"{{post.url}}",'+
+			'"title":"{{post.title}}",'+
+			'"date":"{{post.date | date:"%d/%m/%Y"}}"'+
+		'}'+
+		{% endfor %}
+		']'+
+	{% endfor %}
+'}';
+    var data2 = JSON.parse(dataStr2);
+</script>
+
+<script type="text/javascript">
+function GetQueryString(name){
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r!=null)return  decodeURI(r[2]); return null;
+}
+function renderList(){
+	var tag = GetQueryString("tag");
+	if(!tag)return;
+	J_tag.innerHTML=tag;
+	var articleList="";
+	for(var i=0,len=data2[tag].length;i<len;i++){
+		articleList+='<li>'+
+				'<a href="{{ site.baseurl }}'+data2[tag][i]["url"]+'">'+
+					data2[tag][i]["title"]+
+				'</a>'+
+			'</li>';
+	}
+	articleList='<ul>'+articleList+'</ul>';
+	J_cont.innerHTML=articleList;
+	
+}
+renderList();
+</script>

@@ -1,0 +1,42 @@
+<div class="nav pof of">
+	<div class="search-wrap fl">
+		<form action="/search.html" id="searchForm">
+			<input value="搜索" name="keyword" class="search-input" />
+			<input type="submit" class="search-bt" value="搜索" />
+		</form>
+	</div>
+	<div class="nav-a-wrap fr color-fff">
+		<a href="/">首页</a>
+		<a href="/articleList.html">列表页</a>
+		<a href="/tags.html">标签页</a>
+		<a href="/selfIntroduction.html">自我介绍</a>
+		<a href="/other.html">其他</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+var submitBt = document.querySelector('.search-bt');
+submitBt.onclick=function(e){
+	var val = searchForm.keyword.value;
+	if(val==''||val=='搜索'){
+		alert("搜索内容不能为空~");
+		return false;
+	}
+
+	
+}
+var domInput = document.querySelector('.search-input');
+domInput.onfocus=function(){
+	var val = this.value;
+	if(val=='搜索'){
+		this.value='';
+	}
+}
+domInput.onblur=function(){
+	var val=this.value;
+	if(val==''){
+		this.value='搜索';
+	}
+}
+
+</script>

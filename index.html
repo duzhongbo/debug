@@ -1,0 +1,29 @@
+---
+layout: default
+title: 杜忠波的个人网站
+---
+{% include nav.html %}
+<div class="main">
+	<div class="main poa br10 oh of">
+		<div class="poa color-fff main-inner article-list">
+			<div class="tac mb10">
+				<a class="index-title fw" href="javascript:;">杜忠波的个人网站</a>
+			</div>
+			<div class="line"></div>
+			<ul class="main-list-ul underline">
+			　　{% for post in site.posts  limit:9 offset:0 %}
+				<li>
+					<span class="fr">{{ post.date | date_to_string }}</span> 
+					<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+				</li>
+			　　{% endfor %}
+			</ul>
+ 			<span class="fr">
+				<a href="/articleList.html" class="more fw">MORE &gt&gt</a>
+			</span>
+		</div>
+	</div>
+
+<script type="text/javascript" src="/js/index.js"></script>
+
+</div>

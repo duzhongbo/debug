@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<title>{{ page.title }}</title>
+<link href="/img/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v0.2">
+</head>
+<body>
+
+{% include nav.html %}
+
+<div class="common-wrap auto">
+	<h1 class="tac">{{ page.title }}</h1>
+	<p>{{ content }}</p>
+	<span class="fr">{{ page.date | date_to_string }}</span>
+
+</div>
+
+<!-- disqus评论 -->
+<div class="comment">
+<!-- <div id="disqus_thread"></div> -->
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+// (function() { // DON'T EDIT BELOW THIS LINE
+// var d = document, s = d.createElement('script');
+
+// s.src = '//duzhongbo.disqus.com/embed.js';
+
+// s.setAttribute('data-timestamp', +new Date());
+// (d.head || d.body).appendChild(s);
+// })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+<!-- “多说”评论  -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duzhongbo86"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="{{page.customer.dataThreadKey}}" data-title="{{page.title}}" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+---
+layout: articleList
+title: 搜索页
+---
+{% include nav.html %}
+
+<div class="common-wrap auto">
+	<div>
+		<h1>搜索结果： </h1>
+		<div class="search-result"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+// 在内存中构建所有文章的json数据
+var dataSearch = '['+
+	{% for post in site.posts] %}
+		{% if post != site.posts[0] %}','+{% endif %}
+		'{'+
+			'"url":"{{post.url}}",'+
+			'"title":"{{post.title}}",'+
+			'"content":"{{post.content | strip_html | strip_newlines}}",'+// 过滤html标签和换行符
+			'"date":"{{post.date | date:"%d/%m/%Y"}}",'+
+			'"img":"{{post.customer.img}}"'+
+		'}'+
+	{% endfor %}
+']';
+</script>
+<script type="text/javascript" src="/js/search.js"></script>
