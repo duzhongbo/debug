@@ -22,13 +22,15 @@ function search(){
 function renderList(){
 	var wrap = document.querySelector('.search-result'),htmlStr='';
 	var data = search();
-	var keyword = GetQueryString("keyword"),img;
+	var keyword = GetQueryString("keyword"),img,res;
 	for(var i=0,len=data.length;i<len;i++){
-		if(data[i]['img']){
-			img  = '<img src="'+data[i]['img']+'" width="100" class="fl search-pic">';
+		res = getImg(data[i]['content']);
+		if(res){
+			img  = '<img src="'+res+'" width="100" class="fl search-pic">';
 		}else{
 			img ='';
 		}
+
 		htmlStr+='<ul class="underline">\
                <li class="search-result-li">\
                		<a href="'+data[i]['url']+'" class="color-00f fw">'+highlight(data[i]['title'],keyword)+'</a>\
@@ -77,6 +79,22 @@ function getSummary(str,keyword){
 		}
 		
 	}
-	
+	strReturn = delHtml(strReturn);
 	return strReturn;
+}
+// 从content主体内容中被转义的img标签中找到图片地址
+function getImg(str){
+	var reg = /([^\/]+)\.jpg/;
+	var res = str.match(reg);
+	if(res){
+		return '/img/'+res[1]+'.jpg';
+	}else{
+		return false;
+	}
+}
+// 过滤掉content主体内容中已经转义的html标签
+function delHtml(str){
+	var reg = /&lt;\/[a-z]*&gt;|&lt;[a-z]*&gt;/g;
+	var res=str.replace(reg,'');
+	return res;
 }

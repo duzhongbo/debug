@@ -19,7 +19,7 @@ var dataSearch = '['+
 		'{'+
 			'"url":"{{post.url}}",'+
 			'"title":"{{post.title}}",'+
-			'"content":"{{post.content | strip_html | strip_newlines}}",'+// 过滤html标签和换行符
+			'"content":"{{post.content | strip_newlines |escape}}",'+// 过滤换行符,将内容字符串化
 			'"date":"{{post.date | date:"%d/%m/%Y"}}",'+
 			'"img":"{{post.customer.img}}"'+
 		'}'+
