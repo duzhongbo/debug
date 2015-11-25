@@ -10,12 +10,12 @@ function renderList(){
 	var articleList="";
 	for(var i=0,len=data2[tag].length;i<len;i++){
 		articleList+='<li>'+
-				'<a href="{{ site.baseurl }}'+data2[tag][i]["url"]+'">'+
+				'<a href="'+data2[tag][i]["url"]+'">'+
 					data2[tag][i]["title"]+
 				'</a>'+
 			'</li>';
 	}
-	articleList='<ul>'+articleList+'</ul>';
+	articleList='<ul class="underline color-000">'+articleList+'</ul>';
 	J_cont.innerHTML=articleList;
 	
 }
